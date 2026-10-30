@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0705">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0705'/%3E%3Cpath d='M32 10l5.6 16.4L54 32l-16.4 5.6L32 54l-5.6-16.4L10 32l16.4-5.6z' fill='%23d9a94e'/%3E%3C/svg%3E">
+<title>Hồ Chí Minh 1890–1969 — Cuộc đời và di sản</title>
+<meta name="description" content="Slide tương tác 15 trang về cuộc đời Chủ tịch Hồ Chí Minh: từ làng Sen, bến Nhà Rồng, ba mươi năm bôn ba đến Tuyên ngôn Độc lập và Di chúc. Ảnh tư liệu, chú thích sâu, hoạt họa 3D.">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<canvas id="gl-stage" aria-hidden="true"></canvas>
+<canvas id="dust" aria-hidden="true"></canvas>
+<div class="progress" aria-hidden="true"><i id="progress-fill"></i></div>
+
+<header class="chrome">
+  <div class="brand"><span class="mark"></span>HỒ CHÍ MINH <em>/ 1890–1969</em></div>
+  <div class="chrome-right">
+    <span class="chrono"><b id="chrono-year">1890</b> <span class="chrono-arrow">→</span> <b>1969</b></span>
+    <span class="live">3D</span>
+    <span class="counter"><b id="cur-num">01</b> / 15</span>
+    <button type="button" class="ov-btn" data-overview aria-label="Mở tổng quan 15 trang">
+      <i><b></b><b></b><b></b><b></b></i><span>Tổng quan</span>
+    </button>
+  </div>
+</header>
+
+<nav class="dots" id="dots" aria-label="Điều hướng slide"></nav>
+
+<div class="hintbar" aria-hidden="true">
+  <span class="desktop-hint">
+    <span class="k"><kbd>←</kbd><kbd>→</kbd></span> di chuyển
+    <span class="sep">·</span><span class="k"><kbd>O</kbd></span> tổng quan
+    <span class="sep">·</span><span class="k"><kbd>N</kbd></span> lời bình
+    <span class="sep">·</span><span class="k"><kbd>C</kbd></span> nguồn ảnh
+    <span class="sep">·</span><span class="tap">Chạm ảnh để đọc hồ sơ</span>
+  </span>
+  <span class="touch-hint">Vuốt để chuyển trang · Chạm ảnh để đọc hồ sơ ảnh</span>
+</div>
+
+<main class="deck" id="deck">
+
+  <!-- 00 · BÌA -->
+  <section class="slide slide--cover is-active" data-title="Mở đầu" data-year="1890" aria-label="Trang bìa">
+    <div class="wrap cover-grid">
+      <div class="cover-copy">
+        <p class="kicker reveal" style="--d:.05s">Cuộc đời và di sản · 15 trang</p>
+        <h1 class="hero reveal" style="--d:.12s">HỒ CHÍ<br><span class="grad">MINH</span></h1>
+        <p class="hero-years reveal" style="--d:.18s">1890 <span>—</span> 1969</p>
+        <p class="cover-sub reveal" style="--d:.26s">Từ cậu bé làng Sen đến người đọc <b>Tuyên ngôn Độc lập</b> — 79 năm, năm châu lục, một con đường vì nước.</p>
+        <div class="pills reveal" style="--d:.34s">
+          <span class="pill"><i></i>15 trang</span>
+          <span class="pill"><i></i>Ảnh tư liệu</span>
+          <span class="pill"><i></i>Hoạt họa 3D</span>
+        </div>
+        <div class="cover-cta reveal" style="--d:.42s">
+          <button type="button" class="btn" data-goto="1">Bắt đầu hành trình <span class="arrow">→</span></button>
+          <span class="cover-note">Dùng <kbd>←</kbd> <kbd>→</kbd> hoặc <kbd>Space</kbd>. Chạm vào ảnh để mở hồ sơ chi tiết.</span>
+        </div>
+      </div>
+
+      <div class="cover-visual reveal" style="--d:.28s" data-parallax>
+        <div class="cover-glow" aria-hidden="true"></div>
+        <div class="lotus" id="lotus" aria-hidden="true">
+          <div class="lotus-3d" id="lotus-3d"></div>
+          <div class="lotus-core"></div>
+        </div>
+        <span class="cover-ghost" aria-hidden="true">79</span>
+        <figure class="portrait" data-photo="cover">
+          <span class="portrait-back" aria-hidden="true"></span>
+          <div class="portrait-frame">
+            <img src="assets/img/cover.jpg" alt="Chân dung Hồ Chí Minh năm 1946" fetchpriority="high">
+            <span class="portrait-sheen" aria-hidden="true"></span>
+          </div>
+          <span class="portrait-year">1946</span>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <div class="cover-cap">
+          <span class="cap-tag">CHÂN DUNG · 1946</span>
+          <p>Ảnh chụp năm đầu tiên của nước Việt Nam Dân chủ Cộng hòa. Khuôn mặt gầy, ánh mắt mệt mỏi nhưng bình thản — người vừa đưa một dân tộc ra khỏi ách thuộc địa sau gần một thế kỷ.</p>
+        </div>
+        <div class="chip chip-a"><span class="chip-dot"></span><b>Làng Sen</b><em>19/5/1890</em></div>
+        <div class="chip chip-b"><b>Ba Đình</b><em>2/9/1945</em></div>
+        <div class="chip chip-c"><b>Hà Nội</b><em>2/9/1969</em></div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Mở đầu bằng một câu hỏi: điều gì khiến một người Việt Nam bình thường trở thành biểu tượng của cả một thế kỷ? Chúng ta sẽ đi theo 15 cột mốc, nhưng đừng xem đây là bảng niên biểu. Mỗi trang là một lát cắt: một làng quê, một bến cảng, một căn phòng họp ở Paris, một hang đá ở Cao Bằng.</p>
+      <p>Điểm cần nhấn: hành trình của Hồ Chí Minh không phải đường thẳng. Có những năm tháng ông làm phụ bếp, cào tuyết, bị giam trong tù, bị hiểu lầm, bị bệnh nặng. Chính những khoảng lặng đó làm nên sức nặng của câu chuyện. Mời bạn bấm phím mũi tên để đi tiếp.</p>
+    </div>
+  </section>
+
+  <!-- 01 · LÀNG SEN -->
+  <section class="slide" data-title="Làng Sen" data-year="1890" aria-label="Làng Sen 1890">
+    <div class="wrap split">
+      <div class="copy">
+        <div class="kicker-row reveal" style="--d:.04s"><span class="num">01</span><span class="kicker">Làng Sen · Nam Đàn · Nghệ An</span><span class="year">1890</span></div>
+        <h2 class="title reveal" style="--d:.1s">Sinh ra bên<br><span class="grad">dòng sông Lam</span></h2>
+        <p class="lede reveal" style="--d:.17s">Ngày <strong>19/5/1890</strong>, một cậu bé chào đời trong ngôi nhà tranh của gia đình nhà nho nghèo. Cha là cụ Phó bảng Nguyễn Sinh Sắc, mẹ là bà Hoàng Thị Loan — người đàn bà tần tảo đã truyền cho con sự nhẫn nại và lòng thương người.</p>
+        <ul class="facts reveal" style="--d:.25s">
+          <li><b>Quê</b><span>Kim Liên, Nam Đàn, Nghệ An</span></li>
+          <li><b>Tên khai sinh</b><span>Nguyễn Sinh Cung</span></li>
+          <li><b>Thân phụ</b><span>Nguyễn Sinh Sắc</span></li>
+          <li><b>Thân mẫu</b><span>Hoàng Thị Loan</span></li>
+        </ul>
+        <div class="actions reveal" style="--d:.32s">
+          <button type="button" class="ghost-btn" data-photo="que-huong"><span class="dot"></span>Đọc hồ sơ ảnh<span class="arr">↗</span></button>
+        </div>
+      </div>
+      <div class="visual reveal" style="--d:.2s">
+        <figure class="plate" data-photo="que-huong" style="--tilt:-1.8deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame">
+            <img src="assets/img/que-huong.jpg" alt="Khu mộ bà Hoàng Thị Loan trên núi Động Tranh, Nam Đàn" loading="eager">
+            <span class="plate-glare" aria-hidden="true"></span>
+          </div>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <div class="cap">
+          <span class="cap-tag">ẢNH TƯ LIỆU · NAM ĐÀN</span>
+          <p>Khu mộ bà Hoàng Thị Loan trên núi Động Tranh. Bà mất năm 1901, khi Nguyễn Sinh Cung mới 11 tuổi — nỗi mất mát đầu tiên, và cũng là ký ức mà ông nhắc lại nhiều lần về sự chịu đựng của người phụ nữ Việt Nam.</p>
+          <span class="cap-src">David Brewer · CC BY-SA 2.0 · Wikimedia Commons</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Đừng bắt đầu bằng ngày tháng, hãy bắt đầu bằng không gian. Làng Sen là một làng nông nghiệp nghèo của huyện Nam Đàn, nơi người dân sống bằng lúa và nghề dệt. Gia đình Nguyễn Sinh Sắc thuộc tầng lớp nho sĩ nghèo nhưng có chữ nghĩa — điều đó quyết định cách cậu bé nhìn thế giới: vừa gần với ruộng đồng, vừa có khả năng đọc sách.</p>
+      <p>Mẹ mất sớm, cha đi làm quan rồi bị cách chức, gia đình ly tán. Ba chị em phải tự xoay xở. Chi tiết này quan trọng: tuổi thơ của Hồ Chí Minh không phải một tuổi thơ yên ấm, mà là tuổi thơ của một gia đình trí thức nghèo đang chứng kiến đất nước mất chủ quyền. Lòng yêu nước đến từ đó, không từ một bài giảng nào.</p>
+    </div>
+  </section>
+
+  <!-- 02 · HUẾ -->
+  <section class="slide" data-title="Huế" data-year="1906" aria-label="Huế 1906 – 1911">
+    <div class="wrap split reverse">
+      <div class="copy">
+        <div class="kicker-row reveal" style="--d:.04s"><span class="num">02</span><span class="kicker">Huế · Kinh đô</span><span class="year">1906 – 1911</span></div>
+        <h2 class="title reveal" style="--d:.1s">Nơi cậu học trò<br><span class="grad">nhìn thấy nỗi đau</span></h2>
+        <p class="lede reveal" style="--d:.17s">Năm 1906, Nguyễn Tất Thành theo cha vào Huế. Cậu học ở trường Quốc Học, rồi dạy học ở Phan Thiết. Nhưng bài học lớn nhất nằm ngoài cổng trường: những đoàn phu đi phu phen, những người nông dân bị thuế thân bóp nghẹt.</p>
+        <ul class="facts reveal" style="--d:.25s">
+          <li><b>1906</b><span>Vào Huế cùng cha</span></li>
+          <li><b>1908</b><span>Học trường Quốc Học</span></li>
+          <li><b>1910</b><span>Dạy học ở Dục Thanh</span></li>
+          <li><b>Chí hướng</b><span>“Tìm đường cứu nước”</span></li>
+        </ul>
+        <div class="actions reveal" style="--d:.32s">
+          <button type="button" class="ghost-btn" data-photo="hue"><span class="dot"></span>Đọc hồ sơ ảnh<span class="arr">↗</span></button>
+        </div>
+      </div>
+      <div class="visual reveal" style="--d:.2s">
+        <figure class="plate plate--wide" data-photo="hue" style="--tilt:1.4deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame">
+            <img src="assets/img/hue.jpg" alt="Trường Quốc Học Huế" loading="lazy">
+            <span class="plate-glare" aria-hidden="true"></span>
+          </div>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <div class="cap">
+          <span class="cap-tag">TƯ LIỆU NGÀY NAY · QUỐC HỌC</span>
+          <p>Trường Quốc Học – Huế, nơi Nguyễn Tất Thành theo học năm 1908. Ngôi trường do triều đình thành lập năm 1896, dạy chữ Hán, chữ Quốc ngữ và tiếng Pháp — đúng những công cụ ông sẽ dùng để đối thoại với thế giới.</p>
+          <span class="cap-src">Lưu Ly · Public domain · Wikimedia Commons</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Huế là một bước ngoặt về nhận thức. Ở làng Sen, cậu bé thấy cái nghèo. Ở Huế, cậu thấy hệ thống: quan lại, lính Pháp, thuế, phu phen, những người dân lành bị đối xử như nô lệ ngay dưới mắt một triều đình danh nghĩa vẫn còn vua.</p>
+      <p>Giai thoại nổi tiếng: khi thấy một người Pháp bị đánh, cậu bé Việt Nam nói rằng người Pháp cũng có người tốt, người xấu; điều đáng ghét là chủ nghĩa thực dân chứ không phải cả một dân tộc. Đây là mầm mống tư duy phân biệt bản chất chế độ với con người — sau này thành phương pháp luận trong suốt sự nghiệp của ông.</p>
+      <p>Năm 1911, ông rời Phan Thiết vào Sài Gòn. Gia đình và bạn bè không ai biết ông sẽ đi đâu, đi bao lâu.</p>
+    </div>
+  </section>
+
+  <!-- 03 · BẾN NHÀ RỒNG -->
+  <section class="slide" data-title="Bến Nhà Rồng" data-year="1911" aria-label="Bến Nhà Rồng 1911">
+    <div class="wrap split">
+      <div class="copy">
+        <div class="kicker-row reveal" style="--d:.04s"><span class="num">03</span><span class="kicker">Sài Gòn · Bến Nhà Rồng</span><span class="year">1911</span></div>
+        <h2 class="title reveal" style="--d:.1s">Rời bến,<br><span class="grad">mang theo một câu hỏi</span></h2>
+        <p class="lede reveal" style="--d:.17s">Ngày <strong>5/6/1911</strong>, người thanh niên lấy tên Văn Ba, xin làm phụ bếp trên tàu Amiral Latouche-Trévisse. Ông không ra đi để tìm việc làm — ông ra đi để tìm câu trả lời: <em>vì sao nước mình mất, và làm thế nào để giành lại?</em></p>
+        <ul class="facts reveal" style="--d:.25s">
+          <li><b>5/6/1911</b><span>Rời Bến Nhà Rồng</span></li>
+          <li><b>Con tàu</b><span>Amiral Latouche-Trévisse</span></li>
+          <li><b>Tên trên tàu</b><span>Văn Ba</span></li>
+          <li><b>Nghề</b><span>Phụ bếp</span></li>
+        </ul>
+        <div class="actions reveal" style="--d:.32s">
+          <button type="button" class="ghost-btn" data-photo="ben-nha-rong"><span class="dot"></span>Đọc hồ sơ ảnh<span class="arr">↗</span></button>
+        </div>
+      </div>
+      <div class="visual reveal" style="--d:.2s">
+        <figure class="plate plate--wide" data-photo="ben-nha-rong" style="--tilt:-1.2deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame">
+            <img src="assets/img/ben-nha-rong.jpg" alt="Bến Nhà Rồng ban đêm" loading="lazy">
+            <span class="plate-glare" aria-hidden="true"></span>
+          </div>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <div class="cap">
+          <span class="cap-tag">TƯ LIỆU NGÀY NAY · SÀI GÒN</span>
+          <p>Bến Nhà Rồng bên sông Sài Gòn, nay là Bảo tàng Hồ Chí Minh – TP.HCM. Năm 1911, đây là thương cảng lớn nhất Nam Kỳ; từ bến này, những con tàu chở hàng và người đi khắp các thuộc địa của Pháp.</p>
+          <span class="cap-src">Eternal Dragon · CC BY 3.0 · Wikimedia Commons</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Câu hỏi của một người 21 tuổi: đi đâu? Ông chọn đi về phía nước Pháp — nước đang cai trị Việt Nam. Đó là lựa chọn rất lạ với những nhà yêu nước đương thời, vốn hướng sang Nhật hoặc Trung Quốc. Ông muốn hiểu kẻ thù, và muốn học những gì làm nên sức mạnh của họ.</p>
+      <p>Thông tin cần chính xác: ngày 5/6/1911 là ngày tàu rời bến; một số tài liệu ghi 2/6 là ngày ông lên tàu. Tên Văn Ba là tên ghi trong danh sách thủy thủ. Ông làm phụ bếp — công việc nặng, bẩn, nhưng cho ông tiếp xúc với thủy thủ các nước và học tiếng Pháp, tiếng Anh.</p>
+      <p>Nhấn mạnh: đây là khởi đầu của 30 năm đi qua khoảng 30 quốc gia. Trang sau chúng ta sẽ nhìn toàn bộ hành trình đó trên quả địa cầu 3D.</p>
+    </div>
+  </section>
+
+  <!-- 04 · BA MƯƠI NĂM -->
+  <section class="slide slide--globe" data-title="Ba mươi năm bôn ba" data-year="1911–1941" data-stage="globe" aria-label="Hành trình ba mươi năm">
+    <div class="globe-wrap">
+      <div class="globe-copy">
+        <div class="kicker-row reveal" style="--d:.04s"><span class="num">04</span><span class="kicker">Hành trình · 5 châu lục</span><span class="year">1911 – 1941</span></div>
+        <h2 class="title reveal" style="--d:.1s">Một vòng<br><span class="grad">quanh thế giới</span></h2>
+        <p class="lede reveal" style="--d:.17s">Ba mươi năm, hơn ba mươi quốc gia: Pháp, Anh, Mỹ, các nước châu Phi, Liên Xô, Trung Quốc, Xiêm. Ông làm phụ bếp, cào tuyết, đốt lò, rửa ảnh, viết báo — và học cách người ta làm cách mạng.</p>
+        <ol class="route reveal" style="--d:.24s">
+          <li><b>1911</b><span>Sài Gòn → Marseille</span></li>
+          <li><b>1913</b><span>Le Havre · London</span></li>
+          <li><b>1917</b><span>Paris · Nguyễn Ái Quốc</span></li>
+          <li><b>1923</b><span>Moscow</span></li>
+          <li><b>1924</b><span>Quảng Châu</span></li>
+          <li><b>1930</b><span>Hương Cảng</span></li>
+          <li><b>1941</b><span>Pác Bó · về nước</span></li>
+        </ol>
+        <div class="actions reveal" style="--d:.32s">
+          <button type="button" class="ghost-btn" data-goto="5"><span class="dot"></span>Paris 1920<span class="arr">→</span></button>
+        </div>
+      </div>
+      <div class="css-globe" id="css-globe" aria-hidden="true">
+        <div class="cg-rot" id="cg-rot"><span class="cg-sphere"></span></div>
+        <svg class="cg-routes" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M27 63 Q 46 28 71 43"/><path d="M19 41 Q 45 19 75 57"/>
+        </svg>
+        <span class="cg-ring"></span><span class="cg-ring r2"></span>
+      </div>
+      <div class="globe-note reveal" style="--d:.3s">
+        <span class="cap-tag">ĐỊA CẦU 3D · CHẠM ĐỂ XOAY</span>
+        <p>Quỹ đạo vàng trên địa cầu nối những nơi ông từng sống và làm việc. Đường đi không theo trục Bắc – Nam mà vòng qua các trung tâm của chủ nghĩa thực dân và phong trào cộng sản quốc tế.</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Đây là trang nên dành thời gian cho học sinh tự khám phá: kéo địa cầu, chỉ vào các điểm. Câu chuyện: 1911–1917 là những năm lao động và quan sát. Ở Mỹ, ông thấy nước Mỹ giàu có nhưng vẫn có người da đen bị treo cổ. Ở Anh, ông thấy công nhân London đói rét. Kết luận: bóc lột không chỉ có ở thuộc địa.</p>
+      <p>1917–1923 là những năm hoạt động chính trị ở Paris. 1919 gửi Bản yêu sách 8 điểm tới Hội nghị Versailles, ký tên Nguyễn Ái Quốc — cái tên ra đời từ đây. 1920 đọc Luận cương Lênin. 1922 lập báo Le Paria. 1923 sang Moscow.</p>
+      <p>Một chi tiết hay: trong suốt 30 năm, ông giữ được liên lạc với quê hương qua những lá thư và bài báo, nhưng gần như không có gia đình bên cạnh. Sự hy sinh này đôi khi bị lãng quên khi kể về ông.</p>
+    </div>
+  </section>
+
+  <!-- 05 · TOURS 1920 -->
+  <section class="slide" data-title="Tours 1920" data-year="1920" aria-label="Đại hội Tours 1920">
+    <div class="wrap split">
+      <div class="copy">
+        <div class="kicker-row reveal" style="--d:.04s"><span class="num">05</span><span class="kicker">Paris · Đại hội Tours</span><span class="year">1920</span></div>
+        <h2 class="title reveal" style="--d:.1s">Đọc Luận cương,<br><span class="grad">tìm ra con đường</span></h2>
+        <p class="lede reveal" style="--d:.17s">Tháng 7/1920, ông đọc <em>Sơ thảo luận cương về vấn đề dân tộc và thuộc địa</em> của Lênin. Tháng 12/1920, tại Đại hội Tours, ông bỏ phiếu gia nhập Quốc tế Cộng sản và trở thành một trong những người sáng lập Đảng Cộng sản Pháp.</p>
+        <blockquote class="quote reveal" style="--d:.24s">
+          <p>“Muốn cứu nước và giải phóng dân tộc, không có con đường nào khác con đường cách mạng vô sản.”</p>
+          <cite>Hồ Chí Minh, 1960</cite>
+        </blockquote>
+        <div class="actions reveal" style="--d:.31s">
+          <button type="button" class="ghost-btn" data-photo="nguyen-ai-quoc-1921"><span class="dot"></span>Đọc hồ sơ ảnh<span class="arr">↗</span></button>
+        </div>
+      </div>
+      <div class="visual reveal" style="--d:.2s">
+        <figure class="plate plate--portrait" data-photo="nguyen-ai-quoc-1921" style="--tilt:1.6deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame">
+            <img src="assets/img/nguyen-ai-quoc-1921.jpg" alt="Nguyễn Ái Quốc tại Đại hội Đảng Cộng sản Pháp ở Marseille, 1921" loading="lazy">
+            <span class="plate-glare" aria-hidden="true"></span>
+          </div>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <div class="cap">
+          <span class="cap-tag">TƯ LIỆU · MARSEILLE 1921</span>
+          <p>Nguyễn Ái Quốc (thứ hai từ phải) tại Đại hội Đảng Cộng sản Pháp ở Marseille. Ông mặc bộ vest phương Tây nhưng vẫn là người duy nhất trong khung hình đại diện cho một dân tộc thuộc địa.</p>
+          <span class="cap-src">Agence Meurisse · Public domain · BnF / Wikimedia</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Khoảnh khắc này thường được kể quá gọn. Cần nhấn: ông đến với chủ nghĩa cộng sản không phải vì lý thuyết suông, mà vì Luận cương của Lênin trả lời đúng câu hỏi ông mang theo suốt chín năm: thuộc địa có thể tự giải phóng bằng cách nào, và gắn với phong trào công nhân thế giới ra sao.</p>
+      <p>Tại Đại hội Tours, có hai luồng ý kiến: ở lại với Quốc tế II hay gia nhập Quốc tế III. Ông bỏ phiếu cho Quốc tế III và có bài phát biểu gay gắt về tội ác của chủ nghĩa thực dân Pháp ở Đông Dương. Đây là lần đầu tiên tiếng nói của một người Việt Nam được ghi vào biên bản một đại hội chính trị lớn của châu Âu.</p>
+      <p>Nếu học sinh hỏi vì sao không chọn con đường cải cách: bối cảnh 1920, mọi con đường hợp pháp cho người bản xứ gần như đã đóng lại; và phong trào giải phóng dân tộc đang gắn với phong trào công nhân quốc tế.</p>
+    </div>
+  </section>
+
+  <!-- 06 · QUẢNG CHÂU -->
+  <section class="slide" data-title="Quảng Châu" data-year="1924–1927" aria-label="Quảng Châu 1924 – 1927">
+    <div class="wrap split reverse">
+      <div class="copy">
+        <div class="kicker-row reveal" style="--d:.04s"><span class="num">06</span><span class="kicker">Quảng Châu · Trung Quốc</span><span class="year">1924 – 1927</span></div>
+        <h2 class="title reveal" style="--d:.1s">Trường học<br><span class="grad">của cách mạng</span></h2>
+        <p class="lede reveal" style="--d:.17s">Cuối năm 1924, ông tới Quảng Châu — nơi Quốc dân Đảng và những người cộng sản Trung Quốc đang hợp tác. Năm 1925, ông lập <strong>Hội Việt Nam Cách mạng Thanh niên</strong>, mở lớp huấn luyện, ra báo <em>Thanh Niên</em> và viết <em>Đường Kách mệnh</em> (1927).</p>
+        <ul class="facts reveal" style="--d:.25s">
+          <li><b>11/1924</b><span>Đến Quảng Châu</span></li>
+          <li><b>1925</b><span>Hội VN Cách mạng Thanh niên</span></li>
+          <li><b>21/6/1925</b><span>Báo Thanh Niên ra số 1</span></li>
+          <li><b>1927</b><span>Đường Kách mệnh</span></li>
+        </ul>
+        <div class="actions reveal" style="--d:.32s">
+          <button type="button" class="ghost-btn" data-photo="duong-kach-menh"><span class="dot"></span>Đọc hồ sơ ảnh<span class="arr">↗</span></button>
+        </div>
+      </div>
+      <div class="visual reveal" style="--d:.2s">
+        <figure class="plate plate--wide" data-photo="duong-kach-menh" style="--tilt:-1.6deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame">
+            <img src="assets/img/duong-kach-menh.jpg" alt="Bản gốc tác phẩm Đường Kách mệnh" loading="lazy">
+            <span class="plate-glare" aria-hidden="true"></span>
+          </div>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <div class="cap">
+          <span class="cap-tag">TƯ LIỆU · ĐƯỜNG KÁCH MỆNH 1927</span>
+          <p>Bản gốc tập bài giảng <em>Đường Kách mệnh</em>, in tại Quảng Châu. Sách viết bằng tiếng Việt, trình bày giản dị, kể lại các cuộc cách mạng Mỹ, Pháp, Nga để rút ra bài học cho Việt Nam.</p>
+          <span class="cap-src">Public domain · Wikimedia Commons</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Đây là giai đoạn “ươm mầm”: từ một người hoạt động đơn lẻ, Hồ Chí Minh trở thành người tổ chức. Hội Việt Nam Cách mạng Thanh niên đào tạo những thanh niên Việt Nam đầu tiên được học lý luận cách mạng bài bản; nhiều người sau này là lãnh đạo của Đảng.</p>
+      <p>Đường Kách mệnh đáng chú ý ở chỗ nó không dạy lý thuyết trừu tượng. Mở đầu bằng câu hỏi “Vì sao người ta làm cách mạng?” rồi kể chuyện Cách mạng Mỹ, Pháp, Nga; cuối cùng rút ra: cách mạng phải do quần chúng, phải có Đảng lãnh đạo, và cách mạng thuộc địa phải gắn với cách mạng chính quốc. Đây là hạt nhân tư tưởng của ông.</p>
+      <p>Báo Thanh Niên số 1 ra ngày 21/6/1925 — ngày này sau được lấy làm Ngày Báo chí Cách mạng Việt Nam.</p>
+    </div>
+  </section>
+
+  <!-- 07 · HƯƠNG CẢNG 1930 -->
+  <section class="slide" data-title="Hương Cảng 1930" data-year="1930" aria-label="Thành lập Đảng 1930">
+    <div class="wrap split">
+      <div class="copy">
+        <div class="kicker-row reveal" style="--d:.04s"><span class="num">07</span><span class="kicker">Cửu Long · Hương Cảng</span><span class="year">1930</span></div>
+        <h2 class="title reveal" style="--d:.1s">Ba tổ chức,<br><span class="grad">một Đảng</span></h2>
+        <p class="lede reveal" style="--d:.17s">Đầu năm 1930, ba tổ chức cộng sản non trẻ ở Việt Nam cùng tuyên bố thành lập và cạnh tranh lẫn nhau. Nguyễn Ái Quốc triệu tập hội nghị tại Cửu Long (Hương Cảng), thuyết phục hợp nhất thành <strong>Đảng Cộng sản Việt Nam</strong> ngày 3/2/1930.</p>
+        <ul class="facts reveal" style="--d:.25s">
+          <li><b>3/2/1930</b><span>Thành lập Đảng</span></li>
+          <li><b>Địa điểm</b><span>Cửu Long, Hương Cảng</span></li>
+          <li><b>6/1931</b><span>Bị bắt tại Hồng Kông</span></li>
+          <li><b>1933</b><span>Được trả tự do</span></li>
+        </ul>
+        <div class="actions reveal" style="--d:.32s">
+          <button type="button" class="ghost-btn" data-photo="victoria-1930"><span class="dot"></span>Đọc hồ sơ ảnh<span class="arr">↗</span></button>
+        </div>
+      </div>
+      <div class="visual reveal" style="--d:.2s">
+        <figure class="plate plate--portrait" data-photo="victoria-1930" style="--tilt:-1.4deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame">
+            <img src="assets/img/victoria-1930.png" alt="Hồ sơ tù nhân Sung Man Cho tại nhà tù Victoria, Hồng Kông, 1930" loading="lazy">
+            <span class="plate-glare" aria-hidden="true"></span>
+          </div>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <div class="cap">
+          <span class="cap-tag">HỒ SƠ TÙ NHÂN · 1930</span>
+          <p>Ảnh và hồ sơ tại nhà tù Victoria, Hồng Kông, với tên “Sung Man Cho”. Bị bắt tháng 6/1931, ông bị giam gần hai năm, bị đe dọa trao cho chính quyền Pháp — nhưng luật sư đã can thiệp kịp thời.</p>
+          <span class="cap-src">Victoria Prison Archives · Public domain</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Trang này nên kể như một cuộc khủng hoảng được giải quyết bằng uy tín cá nhân. Ba nhóm cộng sản (Đông Dương Cộng sản Đảng, An Nam Cộng sản Đảng, Đông Dương Cộng sản Liên đoàn) đều muốn lãnh đạo phong trào, và sự chia rẽ có thể làm phong trào suy yếu ngay từ đầu. Nguyễn Ái Quốc với tư cách đại diện Quốc tế Cộng sản đã thuyết phục họ hợp nhất.</p>
+      <p>Văn kiện quan trọng: Chánh cương vắn tắt, Sách lược vắn tắt do ông soạn, xác định con đường cách mạng Việt Nam. Cần nói rõ đây là Đảng ra đời trong bối cảnh khủng hoảng kinh tế thế giới 1929–1933 và phong trào cách mạng đang lên.</p>
+      <p>Chi tiết tù Victoria: hồ sơ ghi tên “Tống Văn Sơ” / “Sung Man Cho”, nghề “thợ chụp ảnh”. Việc ông sống sót và được thả năm 1933 nhờ sự vận động của luật sư Loseby là một câu chuyện về mạng lưới quốc tế mà ông đã dày công xây dựng.</p>
+    </div>
+  </section>
+
+  <!-- 08 · PÁC BÓ -->
+  <section class="slide" data-title="Pác Bó 1941" data-year="1941" aria-label="Pác Bó 1941">
+    <div class="wrap split reverse">
+      <div class="copy">
+        <div class="kicker-row reveal" style="--d:.04s"><span class="num">08</span><span class="kicker">Pác Bó · Cao Bằng</span><span class="year">1941</span></div>
+        <h2 class="title reveal" style="--d:.1s">Sau ba mươi năm,<br><span class="grad">trở về núi rừng</span></h2>
+        <p class="lede reveal" style="--d:.17s">Ngày <strong>28/1/1941</strong>, ông vượt biên giới về Tổ quốc, ở trong hang Cốc Bó (Pác Bó, Hà Quảng, Cao Bằng). Ngày 19/5/1941, Mặt trận Việt Minh ra đời. Từ hang đá này, một phong trào sẽ lớn lên thành cuộc Tổng khởi nghĩa bốn năm sau.</p>
+        <ul class="facts reveal" style="--d:.25s">
+          <li><b>28/1/1941</b><span>Về nước qua Pác Bó</span></li>
+          <li><b>19/5/1941</b><span>Thành lập Việt Minh</span></li>
+          <li><b>1942 – 1943</b><span>Nhật ký trong tù</span></li>
+          <li><b>Bí danh</b><span>Già Thu · Hồ Chí Minh</span></li>
+        </ul>
+        <div class="actions reveal" style="--d:.32s">
+          <button type="button" class="ghost-btn" data-photo="pac-bo"><span class="dot"></span>Hồ sơ Pác Bó<span class="arr">↗</span></button>
+        </div>
+      </div>
+      <div class="visual stack-visual reveal" style="--d:.2s">
+        <figure class="plate plate--sm" data-photo="pac-bo" style="--tilt:-2.5deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame">
+            <img src="assets/img/pac-bo.jpg" alt="Suối Lê-nin và núi Các Mác tại Pác Bó" loading="lazy">
+            <span class="plate-glare" aria-hidden="true"></span>
+          </div>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <figure class="plate plate--sm plate--offset" data-photo="coc-bo" style="--tilt:2.2deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame">
+            <img src="assets/img/coc-bo.jpg" alt="Hang Cốc Bó, Pác Bó, Cao Bằng" loading="lazy">
+            <span class="plate-glare" aria-hidden="true"></span>
+          </div>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <div class="cap cap--stack">
+          <span class="cap-tag">TƯ LIỆU · CAO BẰNG</span>
+          <p>Suối Lê-nin, núi Các Mác và hang Cốc Bó. Ông đặt tên dòng suối trước cửa hang theo tên Lênin — một cách “định vị” lý tưởng ngay giữa núi rừng biên giới.</p>
+          <span class="cap-src">Tycho · CC BY-SA 3.0 · Wikimedia Commons</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Hình ảnh cần khắc sâu: một người đàn ông 51 tuổi, sau 30 năm xa quê, trở về bằng đôi chân qua một cột mốc biên giới, sống trong hang đá, ăn cháo ngô, làm việc bên bàn đá. Cái hang cao khoảng 2 mét, sâu vài mét. Mưa xuống là ướt. Đây là bối cảnh của những bài thơ chữ Hán sau này.</p>
+      <p>Việt Minh ra đời ngày 19/5/1941 — đúng ngày sinh của ông, nhưng không phải ngẫu nhiên: đó là cách để quần chúng dễ nhớ, và cũng là biểu tượng. Chương trình Việt Minh gồm 10 điểm, chủ yếu là độc lập dân tộc, dân chủ, cải thiện đời sống.</p>
+      <p>1942, ông sang Trung Quốc liên lạc và bị chính quyền Tưởng Giới Thạch bắt giam 13 tháng. Trong tù ông viết 133 bài thơ chữ Hán, tập “Nhật ký trong tù” — vừa là nhật ký, vừa là tuyên ngôn về tự do.</p>
+    </div>
+  </section>
+
+  <!-- 09 · BA ĐÌNH 1945 -->
+  <section class="slide slide--1945" data-title="Ba Đình 1945" data-year="1945" aria-label="Tuyên ngôn Độc lập 1945">
+    <div class="wrap split">
+      <div class="copy">
+        <div class="kicker-row reveal" style="--d:.04s"><span class="num">09</span><span class="kicker">Hà Nội · Quảng trường Ba Đình</span><span class="year">1945</span></div>
+        <h2 class="title reveal" style="--d:.1s">Tuyên ngôn<br><span class="grad">Độc lập</span></h2>
+        <p class="lede reveal" style="--d:.17s">Ngày <strong>2/9/1945</strong>, trước hàng trăm nghìn người, Hồ Chí Minh đọc bản Tuyên ngôn Độc lập, khai sinh nước Việt Nam Dân chủ Cộng hòa. Câu hỏi đầu tiên ông nói không phải về chính trị, mà là: <em>“Tôi nói đồng bào nghe rõ không?”</em></p>
+        <ul class="facts reveal" style="--d:.25s">
+          <li><b>16/8/1945</b><span>Quốc dân Đại hội Tân Trào</span></li>
+          <li><b>2/9/1945</b><span>Đọc Tuyên ngôn Độc lập</span></li>
+          <li><b>Dân số</b><span>Khoảng 25 triệu người</span></li>
+          <li><b>Tên nước</b><span>Việt Nam Dân chủ Cộng hòa</span></li>
+        </ul>
+        <div class="actions reveal" style="--d:.32s">
+          <button type="button" class="ghost-btn" data-photo="ba-dinh-1945"><span class="dot"></span>Đọc hồ sơ ảnh<span class="arr">↗</span></button>
+          <button type="button" class="ghost-btn ghost-btn--quiet" data-photo="tan-trao"><span class="dot"></span>Đình Tân Trào<span class="arr">↗</span></button>
+        </div>
+      </div>
+      <div class="visual reveal" style="--d:.2s">
+        <figure class="plate plate--tall" data-photo="ba-dinh-1945" style="--tilt:-1deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame">
+            <img src="assets/img/ba-dinh-1945.jpg" alt="Hồ Chí Minh đọc Tuyên ngôn Độc lập tại Quảng trường Ba Đình ngày 2/9/1945" loading="lazy">
+            <span class="plate-glare" aria-hidden="true"></span>
+          </div>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <div class="cap">
+          <span class="cap-tag">KHOẢNH KHẮC · 2/9/1945</span>
+          <p>Hồ Chí Minh đọc Tuyên ngôn trên lễ đài gỗ dựng giữa quảng trường. Bản Tuyên ngôn mở đầu bằng trích dẫn Tuyên ngôn Độc lập Mỹ (1776) và Tuyên ngôn Nhân quyền Pháp (1791) — một cách đối thoại trực tiếp với phương Tây bằng chính ngôn ngữ của họ.</p>
+          <span class="cap-src">Public domain · Wikimedia Commons</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Đây là trang cao trào, nên đọc chậm. Bối cảnh: Nhật đầu hàng Đồng minh, chính quyền Bảo Đại hoang mang, quân Đồng minh chưa vào, Pháp chưa quay lại. Cách mạng Tháng Tám giành chính quyền trong khoảng hai tuần, gần như không đổ máu.</p>
+      <p>Tuyên ngôn Độc lập không chỉ là văn bản chính trị, mà là một áng văn. Nó trích dẫn hai bản tuyên ngôn của Mỹ và Pháp để lật lại lập luận của chính các cường quốc: nếu tự do, bình đẳng là quyền của con người, thì người Việt Nam cũng có quyền đó. Câu kết: “Nước Việt Nam có quyền hưởng tự do và độc lập, và sự thật đã thành một nước tự do độc lập.”</p>
+      <p>Chi tiết xúc động: đúng 24 năm sau, ngày 2/9/1969, ông qua đời. Người dân Việt Nam vẫn gọi ngày 2/9 là ngày Quốc khánh, và với nhiều người, đó cũng là ngày giỗ Bác.</p>
+    </div>
+  </section>
+
+  <!-- 10 · 1946 -->
+  <section class="slide" data-title="1946" data-year="1946" aria-label="Toàn quốc kháng chiến 1946">
+    <div class="wrap split reverse">
+      <div class="copy">
+        <div class="kicker-row reveal" style="--d:.04s"><span class="num">10</span><span class="kicker">Hà Nội · Toàn quốc kháng chiến</span><span class="year">1946</span></div>
+        <h2 class="title reveal" style="--d:.1s">“Thà hy sinh<br><span class="grad">tất cả…”</span></h2>
+        <p class="lede reveal" style="--d:.17s">Hòa bình chỉ kéo dài hơn một năm. Sau Hiệp định Sơ bộ 6/3/1946 và chuyến đi Pháp, đàm phán thất bại. Đêm <strong>19/12/1946</strong>, Lời kêu gọi Toàn quốc kháng chiến vang lên — mở đầu chín năm trường kỳ.</p>
+        <ul class="facts reveal" style="--d:.25s">
+          <li><b>6/3/1946</b><span>Hiệp định Sơ bộ</span></li>
+          <li><b>5/1946</b><span>Sang Pháp dự Fontainebleau</span></li>
+          <li><b>19/12/1946</b><span>Lời kêu gọi kháng chiến</span></li>
+          <li><b>1947</b><span>Lên Việt Bắc</span></li>
+        </ul>
+        <div class="actions reveal" style="--d:.32s">
+          <button type="button" class="ghost-btn" data-photo="phap-1946"><span class="dot"></span>Hồ sơ ảnh<span class="arr">↗</span></button>
+          <button type="button" class="ghost-btn ghost-btn--quiet" data-photo="kieu-bao-1946"><span class="dot"></span>Kiều bào Paris<span class="arr">↗</span></button>
+        </div>
+      </div>
+      <div class="visual reveal" style="--d:.2s">
+        <figure class="plate plate--wide" data-photo="phap-1946" style="--tilt:1.2deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame">
+            <img src="assets/img/phap-1946.png" alt="Hồ Chí Minh cùng tướng Leclerc và Sainteny năm 1946" loading="lazy">
+            <span class="plate-glare" aria-hidden="true"></span>
+          </div>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <div class="cap">
+          <span class="cap-tag">TƯ LIỆU · 1946</span>
+          <p>Hồ Chí Minh cùng tướng Leclerc và đại diện Pháp Sainteny. Ông chấp nhận nhân nhượng để tránh một cuộc chiến chưa thể thắng, nhưng mỗi nhân nhượng đều có giới hạn: độc lập và toàn vẹn lãnh thổ.</p>
+          <span class="cap-src">Service cinématographique des Armées · Public domain</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Đây là giai đoạn khó giảng nhất vì nhiều mâu thuẫn. Cần nói rõ: chính phủ Việt Nam Dân chủ Cộng hòa non trẻ đối mặt cùng lúc với quân Tưởng ở miền Bắc, quân Anh – Pháp ở miền Nam, nạn đói, ngân khố trống rỗng. Hồ Chí Minh chọn “hòa để tiến”: nhân nhượng có nguyên tắc để có thời gian củng cố lực lượng.</p>
+      <p>Chuyến thăm Pháp 1946 là một nỗ lực ngoại giao cá nhân: ông gặp giới trí thức, báo chí, công đoàn, thậm chí đi thăm các địa phương. Nhưng Hội nghị Fontainebleau bế tắc vì Pháp không chấp nhận độc lập thực sự cho Việt Nam.</p>
+      <p>Câu “Chúng ta thà hy sinh tất cả, chứ nhất định không chịu mất nước, nhất định không chịu làm nô lệ” cần đọc đúng giọng: không phải hô hào, mà là lời tuyên thệ của một người biết rõ cái giá.</p>
+    </div>
+  </section>
+
+  <!-- 11 · ĐIỆN BIÊN PHỦ -->
+  <section class="slide" data-title="Điện Biên Phủ 1954" data-year="1954" aria-label="Điện Biên Phủ 1954">
+    <div class="wrap split">
+      <div class="copy">
+        <div class="kicker-row reveal" style="--d:.04s"><span class="num">11</span><span class="kicker">Điện Biên Phủ · Genève</span><span class="year">1954</span></div>
+        <h2 class="title reveal" style="--d:.1s">Một dân tộc<br><span class="grad">thắng một cường quốc</span></h2>
+        <p class="lede reveal" style="--d:.17s">Chiều <strong>7/5/1954</strong>, lá cờ “Quyết chiến, quyết thắng” tung bay trên hầm De Castries. Chín năm kháng chiến kết thúc bằng một chiến thắng làm rung chuyển hệ thống thuộc địa; ba tháng sau, Hiệp định Genève chia đôi đất nước ở vĩ tuyến 17.</p>
+        <ul class="facts reveal" style="--d:.25s">
+          <li><b>13/3 – 7/5</b><span>55 ngày đêm</span></li>
+          <li><b>7/5/1954</b><span>Chiến thắng Điện Biên Phủ</span></li>
+          <li><b>21/7/1954</b><span>Hiệp định Genève</span></li>
+          <li><b>1954</b><span>Về thăm đền Hùng</span></li>
+        </ul>
+        <div class="actions reveal" style="--d:.32s">
+          <button type="button" class="ghost-btn" data-photo="dien-bien"><span class="dot"></span>Hồ sơ ảnh<span class="arr">↗</span></button>
+          <button type="button" class="ghost-btn ghost-btn--quiet" data-photo="nehru"><span class="dot"></span>Bác và Nehru<span class="arr">↗</span></button>
+        </div>
+      </div>
+      <div class="visual reveal" style="--d:.2s">
+        <figure class="plate plate--wide" data-photo="dien-bien" style="--tilt:-1.3deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame">
+            <img src="assets/img/dien-bien.jpg" alt="Chiến thắng Điện Biên Phủ 1954" loading="lazy">
+            <span class="plate-glare" aria-hidden="true"></span>
+          </div>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <div class="cap">
+          <span class="cap-tag">TƯ LIỆU · ĐIỆN BIÊN PHỦ</span>
+          <p>Bộ đội Việt Minh trên chiến hào Điện Biên Phủ, 1954. Thắng lợi đến từ hậu cần bằng xe đạp thồ, hào chiến đấu siết chặt từng ngày và quyết định chuyển phương châm từ “đánh nhanh, thắng nhanh” sang “đánh chắc, tiến chắc”.</p>
+          <span class="cap-src">Quân đội Nhân dân Việt Nam · Public domain</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Nên nhấn vào sự thay đổi quyết định: cuối 1953, phương án là “đánh nhanh, thắng nhanh” trong vài ngày. Sau khi trinh sát, Đại tướng Võ Nguyên Giáp và Bộ Chỉ huy quyết định chuyển sang “đánh chắc, tiến chắc”. Kéo pháo vào rồi kéo pháo ra là một quyết định nổi tiếng về sự dũng cảm trí tuệ.</p>
+      <p>Vai trò của Hồ Chí Minh trong chiến dịch: ông giao toàn quyền chỉ huy cho Võ Nguyên Giáp, động viên tinh thần, và giữ ổn định hậu phương. Phong cách lãnh đạo “giao việc và tin người” là điểm son.</p>
+      <p>Sau chiến thắng, tháng 9/1954, ông về thăm đền Hùng và nói câu nổi tiếng: “Các vua Hùng đã có công dựng nước, Bác cháu ta phải cùng nhau giữ lấy nước.” Đây là lúc chuyển từ kháng chiến sang xây dựng, nhưng đất nước đã bị chia cắt.</p>
+    </div>
+  </section>
+
+  <!-- 12 · NHÀ SÀN -->
+  <section class="slide" data-title="Bác Hồ" data-year="1954–1969" aria-label="Đời sống và đạo đức 1954 – 1969">
+    <div class="wrap split reverse">
+      <div class="copy">
+        <div class="kicker-row reveal" style="--d:.04s"><span class="num">12</span><span class="kicker">Hà Nội · Phủ Chủ tịch</span><span class="year">1954 – 1969</span></div>
+        <h2 class="title reveal" style="--d:.1s">Một vị Chủ tịch<br><span class="grad">ở nhà sàn</span></h2>
+        <p class="lede reveal" style="--d:.17s">Từ 1958, ông sống trong ngôi nhà sàn gỗ nhỏ giữa vườn Phủ Chủ tịch: một phòng làm việc, một giường, một tủ quần áo. Ông ăn cơm độn ngô cùng nhân dân, mặc áo kaki bạc màu, và tự trồng rau. Cái giản dị ấy không phải hình thức — nó là một quan điểm sống.</p>
+        <ul class="facts reveal" style="--d:.25s">
+          <li><b>1958</b><span>Chuyển lên nhà sàn</span></li>
+          <li><b>1959</b><span>Phát động Tết trồng cây</span></li>
+          <li><b>1960</b><span>Đại hội III</span></li>
+          <li><b>Đạo đức</b><span>Cần, kiệm, liêm, chính</span></li>
+        </ul>
+        <div class="actions reveal" style="--d:.32s">
+          <button type="button" class="ghost-btn" data-photo="nha-san"><span class="dot"></span>Hồ sơ ảnh<span class="arr">↗</span></button>
+          <button type="button" class="ghost-btn ghost-btn--quiet" data-photo="thieu-nhi"><span class="dot"></span>Bác với thiếu nhi<span class="arr">↗</span></button>
+        </div>
+      </div>
+      <div class="visual gallery3 reveal" style="--d:.2s">
+        <figure class="plate plate--g1" data-photo="thieu-nhi" style="--tilt:-2deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame"><img src="assets/img/thieu-nhi.jpg" alt="Hồ Chí Minh với thiếu nhi" loading="lazy"><span class="plate-glare" aria-hidden="true"></span></div>
+          <span class="open-tag">↗</span>
+        </figure>
+        <figure class="plate plate--g2" data-photo="nha-san" style="--tilt:1.5deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame"><img src="assets/img/nha-san.jpg" alt="Nhà sàn của Hồ Chí Minh tại Phủ Chủ tịch" loading="lazy"><span class="plate-glare" aria-hidden="true"></span></div>
+          <span class="open-tag">↗</span>
+        </figure>
+        <figure class="plate plate--g3" data-photo="sen" style="--tilt:-1deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame"><img src="assets/img/sen.jpg" alt="Hồ sen Việt Nam" loading="lazy"><span class="plate-glare" aria-hidden="true"></span></div>
+          <span class="open-tag">↗</span>
+        </figure>
+        <div class="cap cap--gallery">
+          <span class="cap-tag">BA KHUNG HÌNH · MỘT CON NGƯỜI</span>
+          <p>Trẻ con, nhà sàn, hoa sen — ba thứ gắn với hình ảnh Bác Hồ trong ký ức người Việt. Ông chọn sống giữa vườn cây, gần trẻ em, và giữ một khoảng lặng riêng giữa công việc quốc gia.</p>
+          <span class="cap-src">Public domain · Richard Mortel (CC BY 2.0) · dronepicr (CC BY 2.0)</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Trang này nên tránh biến thành huyền thoại. Hãy kể bằng chi tiết cụ thể: nhà sàn rộng khoảng 30 m², có hai phòng; bàn làm việc bằng gỗ; chiếc radio; đôi dép cao su làm từ lốp xe. Ông tự đặt tên cho những con cá trong ao. Những điều nhỏ ấy cho thấy một con người có đời sống nội tâm, không chỉ là biểu tượng.</p>
+      <p>Cần nói cả mặt khó: thập niên 1950, miền Bắc tiến hành cải cách ruộng đất, có những sai lầm nghiêm trọng trong giai đoạn đầu; sau đó Đảng và Chính phủ đã tiến hành sửa sai, và chính Hồ Chí Minh đã công khai nhận trách nhiệm trước Quốc hội. Đây là chi tiết giúp học sinh hiểu lịch sử như một quá trình có sai sót và sửa chữa, không phải một bức tranh hoàn hảo.</p>
+      <p>Về đạo đức: “Cần, kiệm, liêm, chính, chí công vô tư” không phải khẩu hiệu. Ông viết hẳn một tác phẩm về nó năm 1947, và sống theo nó đến cuối đời.</p>
+    </div>
+  </section>
+
+  <!-- 13 · 1969 -->
+  <section class="slide" data-title="1969" data-year="1969" aria-label="Di chúc và năm 1969">
+    <div class="wrap split">
+      <div class="copy">
+        <div class="kicker-row reveal" style="--d:.04s"><span class="num">13</span><span class="kicker">Hà Nội · Bản Di chúc</span><span class="year">1969</span></div>
+        <h2 class="title reveal" style="--d:.1s">Lá thư<br><span class="grad">để lại</span></h2>
+        <p class="lede reveal" style="--d:.17s">Tháng 5/1965, ông bắt đầu viết Di chúc. Bản cuối hoàn chỉnh tháng 5/1969, chỉ vài tháng trước khi mất. Ngày <strong>2/9/1969</strong>, tại Hà Nội, Hồ Chí Minh qua đời, hưởng thọ 79 tuổi — đúng ngày Quốc khánh thứ 24.</p>
+        <blockquote class="quote reveal" style="--d:.24s">
+          <p>“Cuối cùng, tôi để lại muôn vàn tình thân yêu cho toàn dân, toàn Đảng, cho toàn thể bộ đội, cho các cháu thanh niên và nhi đồng.”</p>
+          <cite>Di chúc, 1969</cite>
+        </blockquote>
+        <div class="actions reveal" style="--d:.31s">
+          <button type="button" class="ghost-btn" data-photo="bac-1967"><span class="dot"></span>Hồ sơ ảnh<span class="arr">↗</span></button>
+          <button type="button" class="ghost-btn ghost-btn--quiet" data-photo="lang-bac"><span class="dot"></span>Lăng Bác<span class="arr">↗</span></button>
+        </div>
+      </div>
+      <div class="visual stack-visual reveal" style="--d:.2s">
+        <figure class="plate plate--sm" data-photo="bac-1967" style="--tilt:-1.8deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame"><img src="assets/img/bac-1967.jpg" alt="Hồ Chí Minh năm 1967" loading="lazy"><span class="plate-glare" aria-hidden="true"></span></div>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <figure class="plate plate--sm plate--offset" data-photo="lang-bac" style="--tilt:1.6deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame"><img src="assets/img/lang-bac.jpg" alt="Lăng Chủ tịch Hồ Chí Minh" loading="lazy"><span class="plate-glare" aria-hidden="true"></span></div>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <div class="cap cap--stack">
+          <span class="cap-tag">1967 · 1969</span>
+          <p>Hồ Chí Minh năm 1967, hai năm trước khi mất. Bên dưới: Lăng Chủ tịch tại Quảng trường Ba Đình, khánh thành 29/8/1975 — nơi ông yên nghỉ, ngay cạnh nơi ông đọc Tuyên ngôn.</p>
+          <span class="cap-src">Anefo (CC BY-SA 3.0 NL) · Clay Gilliland (CC BY-SA 2.0)</span>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Di chúc là văn bản nên đọc nguyên văn một đoạn ngắn. Nó không phải diễn văn chính trị; giọng văn rất riêng: dặn dò về Đảng, về đoàn kết, về thế hệ trẻ, về việc chôn cất giản dị. Ông viết “chớ nên tổ chức điếu phúng linh đình” — một chi tiết ít được nhắc.</p>
+      <p>Bối cảnh 1969: chiến tranh đang ở giai đoạn ác liệt, miền Bắc bị ném bom, miền Nam đang kháng chiến. Ông mất lúc 9h47 ngày 2/9/1969. Tang lễ tổ chức tại Hà Nội, hàng triệu người đến viếng. Lăng khánh thành năm 1975, sau khi đất nước thống nhất.</p>
+      <p>Nên phân biệt rõ: ông mất ngày 2/9/1969, nhưng đến năm 1975 mới có Lăng. Thi hài được giữ gìn trong điều kiện chiến tranh — đó là một câu chuyện kỹ thuật và chính trị đặc biệt, có thể kể ngắn gọn nếu người nghe quan tâm.</p>
+    </div>
+  </section>
+
+  <!-- 14 · DI SẢN -->
+  <section class="slide slide--final" data-title="Di sản" data-year="1975–nay" data-stage="star" aria-label="Di sản Hồ Chí Minh">
+    <div class="final-bg" aria-hidden="true">
+      <img src="assets/img/ha-long.jpg" alt="">
+      <span class="final-scrim"></span>
+    </div>
+    <div class="wrap final-grid">
+      <div class="final-copy">
+        <p class="kicker reveal" style="--d:.04s">Di sản · 1975 — hôm nay</p>
+        <h2 class="title reveal" style="--d:.1s">Một con người,<br><span class="grad">một thế kỷ</span></h2>
+        <p class="lede reveal" style="--d:.18s">Năm 1976, Sài Gòn – Gia Định được đặt tên <strong>Thành phố Hồ Chí Minh</strong>. Năm 1990, UNESCO vinh danh ông là “Anh hùng giải phóng dân tộc, Nhà văn hóa lớn” nhân 100 năm ngày sinh. Nhưng di sản lớn nhất có lẽ nằm ở những điều rất nhỏ: một cách sống, một cách nói, một niềm tin vào con người.</p>
+        <div class="final-quote reveal" style="--d:.26s">
+          <p>“Tôi chỉ có một sự ham muốn, ham muốn tột bậc, là làm sao cho nước ta được hoàn toàn độc lập, dân ta được hoàn toàn tự do, đồng bào ai cũng có cơm ăn áo mặc, ai cũng được học hành.”</p>
+          <cite>Hồ Chí Minh, trả lời báo chí, 1946</cite>
+        </div>
+        <div class="final-sources reveal" style="--d:.32s">
+          <button type="button" class="ghost-btn" data-credits><span class="dot"></span>Nguồn ảnh &amp; ghi chú<span class="arr">↗</span></button>
+          <button type="button" class="ghost-btn ghost-btn--quiet" data-goto="0"><span class="dot"></span>Xem lại từ đầu<span class="arr">↺</span></button>
+        </div>
+        <p class="final-foot reveal" style="--d:.38s">Ảnh: Wikimedia Commons — Public domain, CC0, CC BY, CC BY-SA. Danh sách đầy đủ trong mục “Nguồn ảnh” (phím <kbd>C</kbd>).</p>
+      </div>
+
+      <div class="final-visual reveal" style="--d:.24s">
+        <figure class="plate plate--final" data-photo="hcmc" style="--tilt:-1.4deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame"><img src="assets/img/hcmc.jpg" alt="Đường chân trời Thành phố Hồ Chí Minh" loading="lazy"><span class="plate-glare" aria-hidden="true"></span></div>
+          <span class="open-tag">Hồ sơ ảnh <i>↗</i></span>
+        </figure>
+        <figure class="plate plate--final2" data-photo="mot-cot" style="--tilt:1.8deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame"><img src="assets/img/mot-cot.jpg" alt="Chùa Một Cột, Hà Nội" loading="lazy"><span class="plate-glare" aria-hidden="true"></span></div>
+          <span class="open-tag">↗</span>
+        </figure>
+        <figure class="plate plate--final3" data-photo="sen-2" style="--tilt:-2.2deg">
+          <span class="plate-back" aria-hidden="true"></span>
+          <div class="plate-frame"><img src="assets/img/sen-2.jpg" alt="Hái sen trên đầm sen Việt Nam" loading="lazy"><span class="plate-glare" aria-hidden="true"></span></div>
+          <span class="open-tag">↗</span>
+        </figure>
+        <div class="final-cap">
+          <span class="cap-tag">VIỆT NAM HÔM NAY</span>
+          <p>Thành phố mang tên Người, Chùa Một Cột nghìn năm, và những đầm sen — ba lớp thời gian cùng tồn tại trong một đất nước đã đi qua chiến tranh.</p>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Kết bài nên tránh sáo ngữ. Có thể đặt câu hỏi cho người nghe: nếu chỉ giữ lại một điều từ cuộc đời Hồ Chí Minh, bạn giữ điều gì? Với nhiều người, đó là khả năng học không ngừng — ông học tiếng Pháp, tiếng Anh, tiếng Nga, tiếng Trung; học làm báo, làm thơ, chụp ảnh; học từ những người lao động bình thường.</p>
+      <p>Về di sản vật chất: Thành phố Hồ Chí Minh (1976), Lăng Chủ tịch (1975), Bảo tàng Hồ Chí Minh (1990), cùng hàng nghìn di tích, trường học, con đường mang tên ông. Về di sản tinh thần: tư tưởng Hồ Chí Minh được giảng dạy trong hệ thống giáo dục; phong cách “dân chủ, khoa học, giản dị”.</p>
+      <p>UNESCO Nghị quyết 24C/18.6 (1990) ghi nhận ông là nhân vật có đóng góp quan trọng cho sự nghiệp giải phóng dân tộc và hòa bình thế giới. Trang cuối có thể mời người nghe bấm C để xem toàn bộ nguồn ảnh — một cách tôn trọng tư liệu.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- HỒ SƠ ẢNH -->
+<div class="modal" id="photo-modal" aria-hidden="true">
+  <div class="modal-bg" data-close-photo></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="pm-title">
+    <div class="pm-visual">
+      <img id="pm-img" src="assets/img/cover.jpg" alt="">
+      <span class="pm-tag" id="pm-tag">TƯ LIỆU</span>
+    </div>
+    <div class="pm-body">
+      <p class="pm-kicker" id="pm-kicker">Hồ sơ ảnh</p>
+      <h3 class="pm-title" id="pm-title">Chân dung 1946</h3>
+      <div class="pm-text" id="pm-text"></div>
+      <div class="pm-facts" id="pm-facts"></div>
+      <p class="pm-credit" id="pm-credit"></p>
+      <div class="pm-nav">
+        <button type="button" id="pm-prev">← Ảnh trước</button>
+        <button type="button" id="pm-next">Ảnh sau →</button>
+        <button type="button" id="pm-goto">Tới trang này</button>
+      </div>
+    </div>
+    <button type="button" class="m-close" id="pm-close" aria-label="Đóng hồ sơ ảnh">×</button>
+  </div>
+</div>
+
+<!-- TỔNG QUAN -->
+<div class="overview" id="overview" aria-hidden="true">
+  <div class="overview-bg" data-close-overview></div>
+  <div class="ov-inner" role="dialog" aria-modal="true" aria-label="Tổng quan 15 trang">
+    <div class="ov-head">
+      <div>
+        <p>Dòng thời gian</p>
+        <h3>15 trang, 79 năm</h3>
+        <span>Chọn một trang để đi tới · Nhấn O hoặc Esc để đóng</span>
+      </div>
+      <button type="button" class="ov-close" data-close-overview>Đóng ×</button>
+    </div>
+    <div class="ov-grid" id="ov-grid"></div>
+  </div>
+</div>
+
+<!-- LỜI BÌNH -->
+<aside class="notes-drawer" id="notes-drawer" aria-hidden="true" aria-label="Lời bình cho trang hiện tại">
+  <div class="nd-head">
+    <span>Lời bình · <b id="nd-title">Mở đầu</b></span>
+    <button type="button" id="nd-close" aria-label="Đóng lời bình">×</button>
+  </div>
+  <div class="nd-body" id="nd-body"></div>
+</aside>
+
+<!-- NGUỒN ẢNH -->
+<div class="modal modal--credits" id="credits-modal" aria-hidden="true">
+  <div class="modal-bg" data-close-credits></div>
+  <div class="modal-card modal-card--wide" role="dialog" aria-modal="true" aria-labelledby="cm-title">
+    <div class="cm-head">
+      <p>Ghi chú tư liệu</p>
+      <h3 id="cm-title">Nguồn ảnh</h3>
+      <span>Toàn bộ ảnh tải từ Wikimedia Commons. Giấy phép ghi theo từng tệp; ảnh Public domain và CC0 không yêu cầu ghi công, ảnh CC BY / CC BY-SA ghi công tác giả bên dưới.</span>
+    </div>
+    <div class="cm-list" id="cm-list"></div>
+    <button type="button" class="m-close" data-close-credits aria-label="Đóng">×</button>
+  </div>
+</div>
+
+
+<script src="assets/three.min.js"></script>
+<script src="assets/js/photos.js"></script>
+<script src="assets/js/three-stage.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
